@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of openapi.api;
+part of spacetraders_dart;
 
 class HttpBasicAuth implements Authentication {
   HttpBasicAuth({this.username = '', this.password = ''});
@@ -17,10 +17,14 @@ class HttpBasicAuth implements Authentication {
   String password;
 
   @override
-  Future<void> applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams,) async {
+  Future<void> applyToParams(
+    List<QueryParam> queryParams,
+    Map<String, String> headerParams,
+  ) async {
     if (username.isNotEmpty && password.isNotEmpty) {
       final credentials = '$username:$password';
-      headerParams['Authorization'] = 'Basic ${base64.encode(utf8.encode(credentials))}';
+      headerParams['Authorization'] =
+          'Basic ${base64.encode(utf8.encode(credentials))}';
     }
   }
 }

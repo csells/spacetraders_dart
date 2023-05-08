@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of openapi.api;
+part of spacetraders_dart;
 
 class OAuth implements Authentication {
   OAuth({this.accessToken = ''});
@@ -16,7 +16,10 @@ class OAuth implements Authentication {
   String accessToken;
 
   @override
-  Future<void> applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams,) async {
+  Future<void> applyToParams(
+    List<QueryParam> queryParams,
+    Map<String, String> headerParams,
+  ) async {
     if (accessToken.isNotEmpty) {
       headerParams['Authorization'] = 'Bearer $accessToken';
     }

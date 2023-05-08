@@ -8,10 +8,11 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of openapi.api;
+part of spacetraders_dart;
 
 // ignore: one_member_abstracts
 abstract class Authentication {
   /// Apply authentication settings to header and query params.
-  Future<void> applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams);
+  Future<void> applyToParams(
+      List<QueryParam> queryParams, Map<String, String> headerParams);
 }

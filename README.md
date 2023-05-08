@@ -7,10 +7,9 @@ definition](https://github.com/SpaceTradersAPI/api-docs/blob/main/reference/Spac
 and [the OpenAPI generator
 tool](https://github.com/OpenAPITools/openapi-generator).
 
-[The SpaceTraders API is documented
-online](https://github.com/SpaceTradersAPI/api-docs). You can [send your first
-request right here in your browser](https://api.spacetraders.io/v2) to check the
-status of the game server.
+[The SpaceTraders API is documented online](https://docs.spacetraders.io/). You
+can [send your first request right here in your
+browser](https://api.spacetraders.io/v2) to check the status of the game server.
 
 Unlike a traditional game, SpaceTraders does not have a first-party client or
 app to play the game. Instead, you can use the API to build your own client

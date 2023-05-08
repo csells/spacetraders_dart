@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of openapi.api;
+part of spacetraders_dart;
 
 class ApiKeyAuth implements Authentication {
   ApiKeyAuth(this.location, this.paramName);
@@ -20,7 +20,10 @@ class ApiKeyAuth implements Authentication {
   String apiKey = '';
 
   @override
-  Future<void> applyToParams(List<QueryParam> queryParams, Map<String, String> headerParams,) async {
+  Future<void> applyToParams(
+    List<QueryParam> queryParams,
+    Map<String, String> headerParams,
+  ) async {
     final paramValue = apiKeyPrefix.isEmpty ? apiKey : '$apiKeyPrefix $apiKey';
 
     if (paramValue.isNotEmpty) {

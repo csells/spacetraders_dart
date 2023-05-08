@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of openapi.api;
+part of spacetraders_dart;
 
 class ShipRegistration {
   /// Returns a new [ShipRegistration] instance.
@@ -33,30 +33,33 @@ class ShipRegistration {
   ShipRole role;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ShipRegistration &&
-     other.name == name &&
-     other.factionSymbol == factionSymbol &&
-     other.role == role;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ShipRegistration &&
+          other.name == name &&
+          other.factionSymbol == factionSymbol &&
+          other.role == role;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (factionSymbol == null ? 0 : factionSymbol!.hashCode) +
-    (role.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) +
+      (factionSymbol == null ? 0 : factionSymbol!.hashCode) +
+      (role.hashCode);
 
   @override
-  String toString() => 'ShipRegistration[name=$name, factionSymbol=$factionSymbol, role=$role]';
+  String toString() =>
+      'ShipRegistration[name=$name, factionSymbol=$factionSymbol, role=$role]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
+    json[r'name'] = this.name;
     if (this.factionSymbol != null) {
       json[r'factionSymbol'] = this.factionSymbol;
     } else {
       json[r'factionSymbol'] = null;
     }
-      json[r'role'] = this.role;
+    json[r'role'] = this.role;
     return json;
   }
 
@@ -72,8 +75,10 @@ class ShipRegistration {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ShipRegistration[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ShipRegistration[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ShipRegistration[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ShipRegistration[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -87,7 +92,10 @@ class ShipRegistration {
     return null;
   }
 
-  static List<ShipRegistration>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ShipRegistration>? listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ShipRegistration>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -115,12 +123,18 @@ class ShipRegistration {
   }
 
   // maps a json object with a list of ShipRegistration-objects as value to a dart map
-  static Map<String, List<ShipRegistration>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ShipRegistration>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ShipRegistration>>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = ShipRegistration.listFromJson(entry.value, growable: growable,);
+        final value = ShipRegistration.listFromJson(
+          entry.value,
+          growable: growable,
+        );
         if (value != null) {
           map[entry.key] = value;
         }
@@ -135,4 +149,3 @@ class ShipRegistration {
     'role',
   };
 }
-
