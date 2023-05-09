@@ -32,20 +32,20 @@ Future<void> printStatus() async {
   print('');
   print('# most credits');
   print('');
-  final credits = List<List<String>>.from(<List<String>>[
+  final credits = <List<String>>[
     ['agent', 'credits'],
     ...status.leaderboards.mostCredits
         .map((mc) => [mc.agentSymbol, nf.format(mc.credits)])
-  ], growable: false);
+  ];
   print(tabular(credits, align: <String, Side>{'credits': Side.end}));
 
   print('');
   print('# most submitted charts');
   print('');
-  final charts = List<List<String>>.from(<List<String>>[
+  final charts = <List<String>>[
     ['agent', 'count'],
     ...status.leaderboards.mostSubmittedCharts
         .map((mc) => [mc.agentSymbol, nf.format(mc.chartCount)])
-  ], growable: false);
+  ];
   print(tabular(charts, align: <String, Side>{'count': Side.end}));
 }
