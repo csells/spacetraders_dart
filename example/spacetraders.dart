@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:spacetraders_dart/spacetraders_dart.dart';
+import 'package:tabular/tabular.dart';
 // import 'package:tabular/tabular.dart';
 
 void main(List<String> args) async {
@@ -61,27 +62,37 @@ void main(List<String> args) async {
   }
 }''';
   // todo: check out the `format` and `tabular` packages
-  final formatter = NumberFormat('#,##0');
+  final nf = NumberFormat('#,##0');
   final status = GameStatus200Response.fromJson(json);
   print('status: ${status.status}');
-  print('');
 
-  print('agents: ${formatter.format(status.stats.agents)}');
-  print('ships: ${formatter.format(status.stats.ships)}');
-  print('systems: ${formatter.format(status.stats.systems)}');
-  print('waypoints: ${formatter.format(status.stats.waypoints)}');
-  print('');
+  final stats = [
+    ['stat', '#'],
+    ['agents', nf.format(status.stats.agents)],
+    ['ships', nf.format(status.stats.ships)],
+    ['systems', nf.format(status.stats.systems)],
+    ['waypoints', nf.format(status.stats.waypoints)]
+  ];
 
-  print('most credits: (agent: credits)');
-  for (final mc in status.leaderboards.mostCredits) {
-    final formatted = formatter.format(mc.credits);
-    print('  ${mc.agentSymbol}: $formatted');
-  }
   print('');
+  print('stats:');
+  print(tabular(stats, align: {'#': Side.end}));
 
-  print('most submitted charts: (agent: chart count)');
-  for (final msc in status.leaderboards.mostSubmittedCharts) {
-    final formatted = formatter.format(msc.chartCount);
-    print('  ${msc.agentSymbol}: $formatted');
-  }
+  print('');
+  print('most credits:');
+  final credits = List<List<String>>.from([
+    ['agent', 'credits'],
+    ...status.leaderboards.mostCredits
+        .map((mc) => [mc.agentSymbol, nf.format(mc.credits)])
+  ], growable: false);
+  print(tabular(credits, align: {'credits': Side.end}));
+
+  print('');
+  print('most submitted charts:');
+  final charts = List<List<String>>.from([
+    ['agent', 'count'],
+    ...status.leaderboards.mostSubmittedCharts
+        .map((mc) => [mc.agentSymbol, nf.format(mc.chartCount)])
+  ], growable: false);
+  print(tabular(charts, align: {'count': Side.end}));
 }
