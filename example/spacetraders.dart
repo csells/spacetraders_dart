@@ -1,16 +1,20 @@
+// ignore_for_file: avoid_print
+
 import 'package:intl/intl.dart';
 import 'package:spacetraders_dart/spacetraders_dart.dart';
 import 'package:tabular/tabular.dart';
 
 void main(List<String> args) async {
-  final status = await defaultApiClient.gameStatus();
+  await printStatus();
+}
 
-  // todo: check out the `format` package
+Future<void> printStatus() async {
   final nf = NumberFormat('#,##0');
+  final status = await defaultApiClient.gameStatus();
 
   print('# status');
   print('');
-  print('${status.status}');
+  print(status.status);
 
   final stats = [
     ['stat', '#'],
@@ -23,25 +27,25 @@ void main(List<String> args) async {
   print('');
   print('# stats');
   print('');
-  print(tabular(stats, align: {'#': Side.end}));
+  print(tabular(stats, align: <String, Side>{'#': Side.end}));
 
   print('');
   print('# most credits');
   print('');
-  final credits = List<List<String>>.from([
+  final credits = List<List<String>>.from(<List<String>>[
     ['agent', 'credits'],
     ...status.leaderboards.mostCredits
         .map((mc) => [mc.agentSymbol, nf.format(mc.credits)])
   ], growable: false);
-  print(tabular(credits, align: {'credits': Side.end}));
+  print(tabular(credits, align: <String, Side>{'credits': Side.end}));
 
   print('');
   print('# most submitted charts');
   print('');
-  final charts = List<List<String>>.from([
+  final charts = List<List<String>>.from(<List<String>>[
     ['agent', 'count'],
     ...status.leaderboards.mostSubmittedCharts
         .map((mc) => [mc.agentSymbol, nf.format(mc.chartCount)])
   ], growable: false);
-  print(tabular(charts, align: {'count': Side.end}));
+  print(tabular(charts, align: <String, Side>{'count': Side.end}));
 }

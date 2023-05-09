@@ -1,0 +1,16 @@
+name: spacetraders
+version: 0.1.0
+description: Dart CLI for SpaceTraders
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  intl: ^0.18.1
+  spacetraders_dart:
+    path: ..
+  tabular: ^0.6.3+1
+
+dev_dependencies:
+  all_lint_rules_community: ^0.0.31
