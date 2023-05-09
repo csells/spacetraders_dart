@@ -1,6 +1,6 @@
-name: spacetraders
+name: spacetraders_dart_example
 version: 0.1.0
-description: Dart CLI for SpaceTraders
+description: Dart example for SpaceTraders API
 publish_to: none
 
 environment:
